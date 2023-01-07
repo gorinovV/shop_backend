@@ -7,4 +7,4 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./env:/backend/app/.env
+      - ./.env:/backend/app/.env
