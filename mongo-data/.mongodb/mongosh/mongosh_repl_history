@@ -1,0 +1,8 @@
+cls
+clear
+db.review
+db
+show dbs
+exit
+show db
+show dbs
