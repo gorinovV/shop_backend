@@ -5,6 +5,6 @@ services:
     container_name: shop_backend
     restart: always
     ports:
-      - 5000:5000
+      - '5000:5000'
     volumes:
-      - ./.env:/backend/app/.env
+      - ./.env:/opt/app/.env
