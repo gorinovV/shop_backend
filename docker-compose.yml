@@ -1,10 +1,10 @@
 version: '3'
 services:
   shop.backend:
-    image: shop_backend:latest
+    image: ghcr.io/gorinovv/shop_backend/shop_backend:develop
     container_name: shop_backend
     restart: always
     ports:
       - '5000:5000'
     volumes:
-      - ./.env:/usr/src/app/.env
+      - ./.env:/opt/app/.env
