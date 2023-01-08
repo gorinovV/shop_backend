@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16.17.1
 WORKDIR /usr/src/app/
 ADD package.json package.json
 RUN npm install --legacy-peer-deps
