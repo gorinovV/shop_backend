@@ -7,5 +7,6 @@ async function bootstrap() {
   await app.listen(5000);
 
   console.log('APP_RUNNING');
+  console.log('APP_RUNNING in DOCKER');
 }
 bootstrap();
