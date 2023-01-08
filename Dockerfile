@@ -1,5 +1,5 @@
 FROM node:16-alpine
-WORKDIR /home/backend_data
+WORKDIR /usr/src/app/
 ADD package.json package.json
 RUN npm install --legacy-peer-deps
 ADD . .
