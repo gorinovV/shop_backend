@@ -24,14 +24,13 @@ describe('AuthController (e2e)', () => {
 		await app.init();
 	});
 
-	it('/auth/login (POST) - success', async (done) => {
+	it('/auth/login (POST) - success', async () => {
 		return request(app.getHttpServer())
 			.post('/auth/login')
 			.send(loginDto)
 			.expect(200)
 			.then(({ body }: request.Response) => {
 				expect(body.access_token).toBeDefined();
-				done();
 			});
 	});
 
