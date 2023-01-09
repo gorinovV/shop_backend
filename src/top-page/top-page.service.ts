@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
-import { TopPageModel } from './top-page.model';
+import { TopLevelCategory, TopPageModel } from './top-page.model';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { CreateTopPageDto } from './dto/createTopPage.dto';
 import { FindTopPageDto } from './dto/find-top-page.dto';
@@ -40,23 +40,23 @@ export class TopPageService {
       .exec();
   }
 
-  async findByCategory({ firstCategory }: FindTopPageDto) {
+  async findByCategory(firstCategory: TopLevelCategory) {
     return this.topPageModel
-      .aggregate([
-        {
-          $match: {
-            firstCategory: firstCategory,
+      .aggregate()
+      .match({
+        firstCategory,
+      })
+      .group({
+        _id: { secondCategory: '$secondCategory' },
+        pages: {
+          $push: {
+            alias: '$alias',
+            title: '$title',
+            _id: '$_id',
+            category: '$category',
           },
         },
-        {
-          $group: {
-            _id: { secondCategory: '$secondCategory' },
-            pages: {
-              $push: { alias: '$alias', title: '$title' },
-            },
-          },
-        },
-      ])
+      })
       .exec();
   }
 
