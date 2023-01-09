@@ -64,7 +64,7 @@ export class TopPageController {
   @HttpCode(200)
   @Post('find')
   async findByCategory(@Body() dto: FindTopPageDto) {
-    return this.topPageService.findByCategory(dto);
+    return this.topPageService.findByCategory(dto.firstCategory);
   }
 
   @Get('searchText/:text')
