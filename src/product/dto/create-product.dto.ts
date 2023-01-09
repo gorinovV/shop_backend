@@ -1,59 +1,60 @@
-import {
-  IsArray,
-  IsNumber,
-  IsOptional,
-  IsString,
-  Min,
-  ValidateNested,
-} from 'class-validator';
 import { Type } from 'class-transformer';
+import { IsNumber, IsString, IsOptional, ValidateNested, IsArray, Max, Min } from 'class-validator';
 
 class ProductCharacteristicDto {
-  @IsString()
-  name: string;
+	@IsString()
+	name: string;
 
-  @IsString()
-  value: string;
+	@IsString()
+	value: string;
 }
 
 export class CreateProductDto {
-  @IsString()
-  image: string;
+	@IsString()
+	image: string;
 
-  @IsString()
-  title: string;
+	@IsString()
+	title: string;
 
-  @Min(0)
-  @IsNumber()
-  price: number;
+	@IsString()
+	link: string;
 
-  @IsOptional()
-  @IsNumber()
-  oldPrice: number;
+	@Max(5)
+	@Min(1)
+	@IsNumber()
+	initialRating: number;
 
-  @Min(0)
-  @IsNumber()
-  credit: number;
+	@IsNumber()
+	price: number;
 
-  @IsString()
-  description: string;
+	@IsOptional()
+	@IsNumber()
+	oldPrice?: number;
 
-  @IsString()
-  advantages: string;
+	@IsNumber()
+	credit: number;
 
-  @IsString()
-  disAdvantages: string;
+	@IsString()
+	description: string;
 
-  @IsArray()
-  @IsString({ each: true })
-  categories: string[];
+	@IsString()
+	advantages: string;
 
-  @IsArray()
-  @IsString({ each: true })
-  tags: string[];
+	@IsOptional()
+	@IsString()
+	disAdvantages?: string;
 
-  @IsArray()
-  @ValidateNested()
-  @Type(() => ProductCharacteristicDto)
-  characteristics: ProductCharacteristicDto[];
+	@IsArray()
+	@IsString({ each: true })
+	categories: string[];
+
+	@IsArray()
+	@IsString({ each: true })
+	tags: string[];
+
+	@IsArray()
+	@ValidateNested()
+	@Type(() => ProductCharacteristicDto)
+	characteristics: ProductCharacteristicDto[];
 }
+
